@@ -68,13 +68,13 @@
 
     <div id="screen1" class="container">
         <img src="dalenvine.jpeg" style="width: 50%; border-radius: 15px;">
-        <h1 style="color:var(--accent)">Hi My Bubi ❤️</h1>
+        <h1 style="color:var(--accent)">Hi My Bubiiii ❤️</h1>
         <button class="btn-dramatic" onclick="initExperience()">Open Our Story 🎵</button>
     </div>
 
     <div id="screen2" class="container hidden">
         <h2 style="color:var(--accent)">Type your password</h2>
-        <p style="font-size: 0.8rem; color: #888;">Hint: from your ...</p>
+        <p style="font-size: 0.8rem; color: #888;">Hint: Minions Love ...</p>
         <input type="text" id="pass" placeholder="Type here..." 
                style="width: 80%; padding: 15px; border: 2px solid var(--accent); border-radius: 20px; text-align: center;" 
                oninput="checkPass()">
@@ -114,10 +114,31 @@
     <script>
         const memories = [
             { photo: "0.jpeg", bubu: "a.jpeg", text: "You're my heart and home." },
+            { photo: "00.jpeg", bubu: "B.gif", text: "You're my heart and home." },
             { photo: "1.jpeg", bubu: "c.jpeg", text: "Every story has a beginning... ✨" },
             { photo: "2.jpeg", bubu: "d.jpeg", text: "I love irritating you! 😂" },
             { photo: "3.jpeg", bubu: "e.gif", text: "I just want to bite you! 🦷" },
             { photo: "4.jpeg", bubu: "f.jpeg", text: "I'll always hold you tight. 🥺" },
+            { photo: "5.jpeg", bubu: "g.gif", text: "You're my heart and home." },
+            { photo: "6.jpeg", bubu: "h.jpeg", text: "You're my heart and home." },
+            { photo: "7.jpeg", bubu: "i.jpeg", text: "You're my heart and home." },
+            { photo: "8.jpeg", bubu: "j.jpeg", text: "You're my heart and home." },
+            { photo: "9.jpeg", bubu: "k.gif", text: "You're my heart and home." },
+            { photo: "10.jpeg", bubu: "l.jpeg", text: "You're my heart and home." },
+            { photo: "11.jpeg", bubu: "m.gif", text: "You're my heart and home." },
+            { photo: "12.jpeg", bubu: "n.gif", text: "You're my heart and home." },
+            { photo: "13.jpeg", bubu: "o.jpeg", text: "You're my heart and home." },
+            { photo: "14.jpeg", bubu: "p.gif", text: "You're my heart and home." },
+            { photo: "15.jpeg", bubu: "q.gif", text: "You're my heart and home." },
+            { photo: "16.jpeg", bubu: "r.gif", text: "You're my heart and home." },
+            { photo: "17.jpeg", bubu: "s.gif", text: "You're my heart and home." },
+            { photo: "18.jpeg", bubu: "t.gif", text: "You're my heart and home." },
+            { photo: "19.jpeg", bubu: "u.jpeg", text: "You're my heart and home." },
+            { photo: "20.jpeg", bubu: "v.gif", text: "You're my heart and home." },
+            { photo: "21.jpeg", bubu: "w.jpeg", text: "You're my heart and home." },
+            { photo: "22.jpeg", bubu: "x.jpeg", text: "You're my heart and home." },
+            { photo: "23.jpeg", bubu: "y.gif", text: "You're my heart and home." },
+            { photo: "24.jpeg", bubu: "z.jpeg", text: "You're my heart and home." },
             { photo: "25.jpeg", bubu: "y.gif", text: "Now for the question..." }
         ];
 
@@ -133,7 +154,7 @@
         function checkPass() {
             const val = document.getElementById('pass').value.toLowerCase();
             // Matching the hint "from your BEERPAL"
-            if (val === "beerpal") {
+            if (val === "BANANA") {
                 document.getElementById('screen2').classList.add('hidden');
                 document.getElementById('screen3').classList.remove('hidden');
                 updateContent();
@@ -170,7 +191,7 @@
             document.getElementById('final-screen').classList.remove('hidden');
             
             // Celebration Effect
-            const duration = 5 * 1000;
+            const duration = 5 * 5000;
             const animationEnd = Date.now() + duration;
             const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
 
@@ -185,7 +206,7 @@
                 return clearInterval(interval);
               }
 
-              const particleCount = 50 * (timeLeft / duration);
+              const particleCount = 100 * (timeLeft / duration);
               // Confetti with pink/red/white colors
               confetti(Object.assign({}, defaults, { 
                 particleCount, 
