@@ -145,7 +145,6 @@
         let step = 0;
 
         function initExperience() {
-            // Replaced with a generic romantic song link, ensure the ID is correct
             document.getElementById('player').innerHTML = `<iframe width="560" height="315" src="https://www.youtube.com/embed/HTFpTVaHvjw?autoplay=1&mute=0" allow="autoplay"></iframe>`;
             document.getElementById('screen1').classList.add('hidden');
             document.getElementById('screen2').classList.remove('hidden');
@@ -153,8 +152,8 @@
 
         function checkPass() {
             const val = document.getElementById('pass').value.toLowerCase();
-            // Matching the hint "from your BEERPAL"
-            if (val === "Beerpal") {
+            // Updated to check for "banana"
+            if (val === "banana") {
                 document.getElementById('screen2').classList.add('hidden');
                 document.getElementById('screen3').classList.remove('hidden');
                 updateContent();
@@ -180,9 +179,8 @@
 
         function moveNo() {
             const btn = document.getElementById('no-btn');
-            // Move within the container bounds
-            const x = Math.random() * 70 - 35; // random horizontal
-            const y = Math.random() * 100 - 50; // random vertical
+            const x = Math.random() * 70 - 35;
+            const y = Math.random() * 100 - 50;
             btn.style.transform = `translate(${x}px, ${y}px)`;
         }
 
@@ -190,7 +188,6 @@
             document.getElementById('screen4').classList.add('hidden');
             document.getElementById('final-screen').classList.remove('hidden');
             
-            // Celebration Effect
             const duration = 5 * 1000;
             const animationEnd = Date.now() + duration;
             const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
@@ -207,7 +204,6 @@
               }
 
               const particleCount = 50 * (timeLeft / duration);
-              // Confetti with pink/red/white colors
               confetti(Object.assign({}, defaults, { 
                 particleCount, 
                 origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
