@@ -131,11 +131,11 @@
 
     <script>
         const memories = [
-            { photo: "0.jpeg", bubu: "a.jpeg", text: "This picture shows that howw i need to take care of you, like my daughter" },
-            { photo: "00.jpeg", bubu: "B.gif", text: "This is best pictures from all pictures, my favourite one, dont know how many times mene ye dekhi hai" },
+            { photo: "0.jpeg", bubu: "a.jpeg", text: "This picture shows that how i need to take care of you, like my daughter" },
+            { photo: "00.jpeg", bubu: "B.gif", text: "This is best pictures from all pictures, my favourite one, don't know how many times mene ye dekhi hai" },
             { photo: "1.jpeg", bubu: "c.jpeg", text: "OMG😍😍!!!!! .... this picture is random and we never know this is meant something. All things start from here. Our first meet in Aligarh" },
             { photo: "2.jpeg", bubu: "d.jpeg", text: "This is first sexiest picture you sent to me🤣🤣, i was amazed and gaze you for long time😍😍" },
-            { photo: "3.jpeg", bubu: "e.gif", text: "This picture remind me of emotional attachment we had and still have. The feeling of having you and at that point i realise youre part of me and Im attached with you🥺🥺" },
+            { photo: "3.jpeg", bubu: "e.gif", text: "This picture remind me of emotional attachment we had and still have after that small hug. The feeling of having you and at that point i realise youre part of me and I'm attached with you🥺🥺" },
             { photo: "4.jpeg", bubu: "f.jpeg", text: "All up and down, getting sick, problems and feeling of being at low. Mai hn tmhare sath bubu.🥺" },
             { photo: "5.jpeg", bubu: "g.gif", text: "First boobifool picture you sent me and one tooth wali bhi jo aage aa jata hai🥺🥺🥺" },
             { photo: "6.jpeg", bubu: "h.jpeg", text: "That smile i ruined everytime and you make face like having constipation 💩💩" },
@@ -232,7 +232,7 @@
             document.getElementById('screen4').classList.add('hidden');
             document.getElementById('final-screen').classList.remove('hidden');
             
-            const duration = 15 * 1000;
+            const duration = 15 * 5000;
             const animationEnd = Date.now() + duration;
             const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
 
@@ -244,7 +244,7 @@
               const timeLeft = animationEnd - Date.now();
               if (timeLeft <= 0) return clearInterval(interval);
 
-              const particleCount = 100 * (timeLeft / duration);
+              const particleCount = 500 * (timeLeft / duration);
               confetti(Object.assign({}, defaults, { 
                 particleCount, 
                 origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
