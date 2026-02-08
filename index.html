@@ -61,8 +61,8 @@
     </div>
 
     <div id="screen2" class="container hidden">
-        <h2 style="color:var(--accent)">Unlock with Love</h2>
-        <input type="text" id="pass" placeholder="Type 'I LOVE YOU'" 
+        <h2 style="color:var(--accent)">Type your password</h2>
+        <input type="text" id="pass" placeholder="Type 'from your BEERPAL'" 
                style="width: 80%; padding: 15px; border: 2px solid var(--accent); border-radius: 20px; text-align: center;" 
                oninput="checkPass()">
     </div>
@@ -85,23 +85,26 @@
         </div>
     </div>
 
-    <div id="screen5" class="container hidden">
-        <h1 style="color:var(--accent)">I'm So Happy! ❤️</h1>
-        <p>Send me a little message and your photos!</p>
+    <div id="final-screen" class="container hidden">
+        <h1 style="color: var(--accent); font-size: 2.5rem;">I'm Yours! ❤️</h1>
+        <p style="font-size: 1.2rem;">You've made me the happiest person today.</p>
         
-        <textarea id="love-message" class="message-input" placeholder="Type something sweet..."></textarea>
-        
-        <button class="btn-dramatic" onclick="sendMessage()">Send Message & Call 🎥</button>
-        
-        <p style="margin-top: 20px; font-size: 0.9rem; color: #888;">I'm waiting to celebrate with you! 🐽</p>
+        <div class="final-request-box fade-in">
+            <h3 style="margin-top: 0;">A Little Surprise? 🥺</h3>
+            <p>I want to see your beautiful smile right now. Can you <b>send me 2-3 of your favorite photos</b> from today?</p>
+            <hr style="border: 0; border-top: 1px solid var(--accent); opacity: 0.3; margin: 20px 0;">
+            <p style="font-weight: bold; font-size: 1.3rem;">And then... can we have a Video Call? 🎥</p>
+            <p>I'm waiting to celebrate this with you!</p>
+        </div>
     </div>
+
 
     <script>
         const memories = [
             { photo: "0.jpeg", bubu: "a.jpeg", text: "You're my heart and home." },
             { photo: "00.jpeg", bubu: "B.gif", text: "You're my heart and home." },
             { photo: "1.jpeg", bubu: "c.jpeg", text: "Every story has a beginning... ✨" },
-            { photo: "2", bubu: "d.jpeg", text: "I love irritating you! 😂" },
+            { photo: "2,jpeg", bubu: "d.jpeg", text: "I love irritating you! 😂" },
             { photo: "3.jpeg", bubu: "e.gif", text: "I just want to bite you! 🦷" },
             { photo: "4.jpeg", bubu: "f.jpeg", text: "I'll always hold you tight. 🥺" },
             { photo: "5.jpeg", bubu: "g.gif", text: "You're my heart and home." },
