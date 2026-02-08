@@ -18,12 +18,12 @@
             background: rgba(255, 255, 255, 0.98); border-radius: 30px;
             box-shadow: 0 20px 50px rgba(0,0,0,0.15); border: 2px solid white;
             max-height: 95vh; overflow-y: auto;
+            position: relative;
         }
 
         .image-container { display: flex; flex-direction: column; align-items: center; position: relative; }
         .photo-box { width: 100%; border-radius: 15px; border: 4px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
         
-        /* Bubu box at 40% size */
         .bubu-box { 
             width: 40%; 
             margin-top: -40px; 
@@ -40,14 +40,26 @@
             background: var(--accent); color: white; border: none; padding: 15px 40px; 
             border-radius: 50px; font-size: 1.1rem; cursor: pointer; font-weight: bold; 
             box-shadow: 0 5px 15px rgba(255,77,109,0.3); width: 85%;
+            transition: transform 0.2s;
+        }
+        .btn-dramatic:active { transform: scale(0.95); }
+
+        .no-btn { 
+            background: #95a5a6; 
+            position: absolute; 
+            width: auto !important; 
+            padding: 10px 20px !important;
+            white-space: nowrap;
+            z-index: 10;
         }
 
-        .message-input {
-            width: 85%; height: 80px; padding: 12px; border: 2px solid #ffcbd1;
-            border-radius: 15px; font-family: inherit; margin-bottom: 15px; outline: none;
+        .final-request-box {
+            background: #fff0f3;
+            padding: 20px;
+            border-radius: 20px;
+            margin-top: 20px;
+            border: 1px dashed var(--accent);
         }
-
-        .no-btn { background: #95a5a6; position: absolute; width: auto !important; padding: 10px 20px !important; }
     </style>
 </head>
 <body>
@@ -62,7 +74,8 @@
 
     <div id="screen2" class="container hidden">
         <h2 style="color:var(--accent)">Type your password</h2>
-        <input type="text" id="pass" placeholder="Type 'from your BEERPAL'" 
+        <p style="font-size: 0.8rem; color: #888;">Hint: from your ...</p>
+        <input type="text" id="pass" placeholder="Type here..." 
                style="width: 80%; padding: 15px; border: 2px solid var(--accent); border-radius: 20px; text-align: center;" 
                oninput="checkPass()">
     </div>
@@ -79,28 +92,18 @@
     <div id="screen4" class="container hidden">
         <img src="D2.jpeg" style="width: 60%; border-radius: 15px;">
         <h2 style="color: #ff3355; font-size: 1.8rem; margin-top: 15px;">Will you be my Dalenvine? 🌹</h2>
-        <div style="height: 120px; position: relative; margin-top: 20px;">
-            <button class="btn-dramatic" style="background:#27ae60;" onclick="yes()">YES! 💖</button>
+        <div style="height: 150px; position: relative; margin-top: 20px; display: flex; justify-content: center; align-items: center;">
+            <button class="btn-dramatic" style="background:#27ae60; z-index: 2;" onclick="yes()">YES! 💖</button>
             <button class="btn-dramatic no-btn" id="no-btn" onmouseover="moveNo()">No</button>
         </div>
     </div>
     
-   <div id="ask-screen" class="container hidden">
-        <h1 class="fade-in" style="color: var(--accent); font-size: 1.5rem;">My Heart, My Soul...</h1>
-        <p class="fade-in" style="font-size: 1.3rem;">Every memory we've shared led me to this moment.</p>
-        <h2 class="fade-in" style="color: #ff3355; font-size: 2.2rem; margin-bottom: 20px;">Will you be my Dalenvine? 🌹</h2>
-        
-        <div style="height: 150px; position: relative; margin-top: 40px;">
-            <button class="btn-dramatic" style="font-size: 1.6rem; background: #27ae60; width: 85%;" onclick="yes()">YES, FOREVER! 💖</button>
-            <button class="btn-dramatic no-btn" id="no-btn" onmouseover="moveNo()">No</button>
-        </div>
-    </div>
     <div id="final-screen" class="container hidden">
         <h1 style="color: var(--accent); font-size: 2.5rem;">I'm Yours! ❤️</h1>
         <p style="font-size: 1.2rem;">You've made me the happiest person today.</p>
         
-        <div class="final-request-box fade-in">
-            <h3 style="margin-top: 0;">A Little Surprise? 🥺</h3>
+        <div class="final-request-box">
+            <h3 style="margin-top: 0; color: var(--accent);">A Little Surprise? 🥺</h3>
             <p>I want to see your beautiful smile right now. Can you <b>send me 2-3 of your favorite photos</b> from today?</p>
             <hr style="border: 0; border-top: 1px solid var(--accent); opacity: 0.3; margin: 20px 0;">
             <p style="font-weight: bold; font-size: 1.3rem;">And then... can we have a Video Call? 🎥</p>
@@ -108,48 +111,29 @@
         </div>
     </div>
 
-
     <script>
         const memories = [
             { photo: "0.jpeg", bubu: "a.jpeg", text: "You're my heart and home." },
-            { photo: "00.jpeg", bubu: "B.gif", text: "You're my heart and home." },
             { photo: "1.jpeg", bubu: "c.jpeg", text: "Every story has a beginning... ✨" },
             { photo: "2.jpeg", bubu: "d.jpeg", text: "I love irritating you! 😂" },
             { photo: "3.jpeg", bubu: "e.gif", text: "I just want to bite you! 🦷" },
             { photo: "4.jpeg", bubu: "f.jpeg", text: "I'll always hold you tight. 🥺" },
-            { photo: "5.jpeg", bubu: "g.gif", text: "You're my heart and home." },
-            { photo: "6.jpeg", bubu: "h.jpeg", text: "You're my heart and home." },
-            { photo: "7.jpeg", bubu: "i.jpeg", text: "You're my heart and home." },
-            { photo: "8.jpeg", bubu: "j.jpeg", text: "You're my heart and home." },
-            { photo: "9.jpeg", bubu: "k.gif", text: "You're my heart and home." },
-            { photo: "10.jpeg", bubu: "l.jpeg", text: "You're my heart and home." },
-            { photo: "11.jpeg", bubu: "m.gif", text: "You're my heart and home." },
-            { photo: "12.jpeg", bubu: "n.gif", text: "You're my heart and home." },
-            { photo: "13.jpeg", bubu: "o.jpeg", text: "You're my heart and home." },
-            { photo: "14.jpeg", bubu: "p.gif", text: "You're my heart and home." },
-            { photo: "15.jpeg", bubu: "q.gif", text: "You're my heart and home." },
-            { photo: "16.jpeg", bubu: "r.gif", text: "You're my heart and home." },
-            { photo: "17.jpeg", bubu: "s.gif", text: "You're my heart and home." },
-            { photo: "18.jpeg", bubu: "t.gif", text: "You're my heart and home." },
-            { photo: "19.jpeg", bubu: "u.jpeg", text: "You're my heart and home." },
-            { photo: "20.jpeg", bubu: "v.gif", text: "You're my heart and home." },
-            { photo: "21.jpeg", bubu: "w.jpeg", text: "You're my heart and home." },
-            { photo: "22.jpeg", bubu: "x.jpeg", text: "You're my heart and home." },
-            { photo: "23.jpeg", bubu: "y.gif", text: "You're my heart and home." },
-            { photo: "24.jpeg", bubu: "z.jpeg", text: "You're my heart and home." },
             { photo: "25.jpeg", bubu: "y.gif", text: "Now for the question..." }
         ];
 
         let step = 0;
 
         function initExperience() {
-            document.getElementById('player').innerHTML = `<iframe width="560" height="315" src="https://www.youtube.com/embed/HTFpTVaHvjw?autoplay=1&loop=1&playlist=HTFpTVaHvjw" allow="autoplay"></iframe>`;
+            // Replaced with a generic romantic song link, ensure the ID is correct
+            document.getElementById('player').innerHTML = `<iframe width="560" height="315" src="https://www.youtube.com/embed/HTFpTVaHvjw?autoplay=1&mute=0" allow="autoplay"></iframe>`;
             document.getElementById('screen1').classList.add('hidden');
             document.getElementById('screen2').classList.remove('hidden');
         }
 
         function checkPass() {
-            if (document.getElementById('pass').value.toUpperCase() === "I LOVE YOU") {
+            const val = document.getElementById('pass').value.toLowerCase();
+            // Matching the hint "from your BEERPAL"
+            if (val === "beerpal") {
                 document.getElementById('screen2').classList.add('hidden');
                 document.getElementById('screen3').classList.remove('hidden');
                 updateContent();
@@ -165,8 +149,9 @@
 
         function nextMem() {
             step++;
-            if (step < memories.length) { updateContent(); } 
-            else {
+            if (step < memories.length) { 
+                updateContent(); 
+            } else {
                 document.getElementById('screen3').classList.add('hidden');
                 document.getElementById('screen4').classList.remove('hidden');
             }
@@ -174,23 +159,45 @@
 
         function moveNo() {
             const btn = document.getElementById('no-btn');
-            btn.style.left = Math.random() * 60 + '%';
-            btn.style.top = Math.random() * 60 + '%';
+            // Move within the container bounds
+            const x = Math.random() * 70 - 35; // random horizontal
+            const y = Math.random() * 100 - 50; // random vertical
+            btn.style.transform = `translate(${x}px, ${y}px)`;
         }
 
         function yes() {
             document.getElementById('screen4').classList.add('hidden');
-            document.getElementById('screen5').classList.remove('hidden');
-            confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
-        }
-
-        function sendMessage() {
-            const msg = document.getElementById('love-message').value;
-            // This opens the default mail app with the response. 
-            // You can also change this to a WhatsApp link: https://wa.me/YOURNUMBER?text=
-            window.location.href = `mailto:YOUR_EMAIL_HERE@gmail.com?subject=I Said Yes!&body=${encodeURIComponent(msg)}`;
+            document.getElementById('final-screen').classList.remove('hidden');
             
-            alert("Redirecting to celebrate! Don't forget to send the photos! ❤️");
+            // Celebration Effect
+            const duration = 5 * 1000;
+            const animationEnd = Date.now() + duration;
+            const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+            function randomInRange(min, max) {
+              return Math.random() * (max - min) + min;
+            }
+
+            const interval = setInterval(function() {
+              const timeLeft = animationEnd - Date.now();
+
+              if (timeLeft <= 0) {
+                return clearInterval(interval);
+              }
+
+              const particleCount = 50 * (timeLeft / duration);
+              // Confetti with pink/red/white colors
+              confetti(Object.assign({}, defaults, { 
+                particleCount, 
+                origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
+                colors: ['#ff4d6d', '#ffcbd1', '#ffffff', '#ff0000']
+              }));
+              confetti(Object.assign({}, defaults, { 
+                particleCount, 
+                origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
+                colors: ['#ff4d6d', '#ffcbd1', '#ffffff', '#ff0000']
+              }));
+            }, 250);
         }
     </script>
 </body>
