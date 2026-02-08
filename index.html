@@ -44,6 +44,13 @@
         }
         .btn-dramatic:active { transform: scale(0.95); }
 
+        /* Style for the Back Button */
+        .btn-back {
+            background: #fff; color: var(--accent); border: 2px solid var(--accent);
+            padding: 8px 20px; border-radius: 50px; font-size: 0.9rem; cursor: pointer;
+            margin-bottom: 10px; font-weight: bold; width: auto; display: inline-block;
+        }
+
         .no-btn { 
             background: #95a5a6; 
             position: absolute; 
@@ -81,6 +88,8 @@
     </div>
 
     <div id="screen3" class="container hidden">
+        <button id="prev-btn" class="btn-back" onclick="prevMem()" style="display:none;">← Back</button>
+        
         <div class="image-container">
             <img id="mem-img" class="photo-box" src="">
             <img id="bubu-img" class="bubu-box" src="">
@@ -145,14 +154,15 @@
         let step = 0;
 
         function initExperience() {
-            document.getElementById('player').innerHTML = `<iframe width="560" height="315" src="https://www.youtube.com/embed/HTFpTVaHvjw?autoplay=1&mute=0" allow="autoplay"></iframe>`;
+            // Updated URL with loop=1 and playlist=[ID] to ensure looping
+            const videoId = 'HTFpTVaHvjw';
+            document.getElementById('player').innerHTML = `<iframe width="560" height="315" src="https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0&loop=1&playlist=${videoId}" allow="autoplay"></iframe>`;
             document.getElementById('screen1').classList.add('hidden');
             document.getElementById('screen2').classList.remove('hidden');
         }
 
         function checkPass() {
             const val = document.getElementById('pass').value.toLowerCase();
-            // Updated to check for "banana"
             if (val === "banana") {
                 document.getElementById('screen2').classList.add('hidden');
                 document.getElementById('screen3').classList.remove('hidden');
@@ -164,7 +174,15 @@
             document.getElementById('mem-img').src = memories[step].photo;
             document.getElementById('bubu-img').src = memories[step].bubu;
             document.getElementById('mem-desc').innerText = memories[step].text;
-            if(step === memories.length - 1) document.getElementById('next-btn').innerText = "Ask Me... ❤️";
+            
+            // Toggle Back button visibility
+            document.getElementById('prev-btn').style.display = (step > 0) ? "inline-block" : "none";
+            
+            if(step === memories.length - 1) {
+                document.getElementById('next-btn').innerText = "Ask Me... ❤️";
+            } else {
+                document.getElementById('next-btn').innerText = "Continue... →";
+            }
         }
 
         function nextMem() {
@@ -174,6 +192,14 @@
             } else {
                 document.getElementById('screen3').classList.add('hidden');
                 document.getElementById('screen4').classList.remove('hidden');
+            }
+        }
+
+        // PREVIOUS PHOTO FUNCTION
+        function prevMem() {
+            if (step > 0) {
+                step--;
+                updateContent();
             }
         }
 
