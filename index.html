@@ -191,7 +191,7 @@
             document.getElementById('final-screen').classList.remove('hidden');
             
             // Celebration Effect
-            const duration = 5 * 5000;
+            const duration = 5 * 1000;
             const animationEnd = Date.now() + duration;
             const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
 
@@ -206,7 +206,7 @@
                 return clearInterval(interval);
               }
 
-              const particleCount = 100 * (timeLeft / duration);
+              const particleCount = 50 * (timeLeft / duration);
               // Confetti with pink/red/white colors
               confetti(Object.assign({}, defaults, { 
                 particleCount, 
