@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Forever ❤️</title>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        :root { --accent: #ff4d6d; }
+        body { 
+            margin: 0; height: 100vh; display: flex; justify-content: center; align-items: center; 
+            font-family: 'Georgia', serif; overflow: hidden;
+            background: radial-gradient(circle, #fff0f3 0%, #ffcbd1 100%);
+        }
+        .hidden { display: none !important; }
+        .container { 
+            text-align: center; max-width: 450px; width: 92%; padding: 20px; 
+            background: rgba(255, 255, 255, 0.98); border-radius: 30px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15); border: 2px solid white;
+            max-height: 95vh; overflow-y: auto;
+        }
+
+        .image-container { display: flex; flex-direction: column; align-items: center; position: relative; }
+        .photo-box { width: 100%; border-radius: 15px; border: 4px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        
+        /* Bubu box at 40% size */
+        .bubu-box { 
+            width: 40%; 
+            margin-top: -40px; 
+            border-radius: 12px; 
+            border: 3px solid white; 
+            background: white; 
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15); 
+            z-index: 5; 
+        }
+
+        .description { margin: 20px 0; font-size: 1.1rem; color: #444; font-style: italic; min-height: 50px; }
+        
+        .btn-dramatic { 
+            background: var(--accent); color: white; border: none; padding: 15px 40px; 
+            border-radius: 50px; font-size: 1.1rem; cursor: pointer; font-weight: bold; 
+            box-shadow: 0 5px 15px rgba(255,77,109,0.3); width: 85%;
+        }
+
+        .message-input {
+            width: 85%; height: 80px; padding: 12px; border: 2px solid #ffcbd1;
+            border-radius: 15px; font-family: inherit; margin-bottom: 15px; outline: none;
+        }
+
+        .no-btn { background: #95a5a6; position: absolute; width: auto !important; padding: 10px 20px !important; }
+    </style>
+</head>
+<body>
+
+    <div id="player" style="position: absolute; left: -9999px;"></div>
+
+    <div id="screen1" class="container">
+        <img src="dudu bubu love.jpeg" style="width: 50%; border-radius: 15px;">
+        <h1 style="color:var(--accent)">Hi My Bubi ❤️</h1>
+        <button class="btn-dramatic" onclick="initExperience()">Open Our Story 🎵</button>
+    </div>
+
+    <div id="screen2" class="container hidden">
+        <h2 style="color:var(--accent)">Unlock with Love</h2>
+        <input type="text" id="pass" placeholder="Type 'I LOVE YOU'" 
+               style="width: 80%; padding: 15px; border: 2px solid var(--accent); border-radius: 20px; text-align: center;" 
+               oninput="checkPass()">
+    </div>
+
+    <div id="screen3" class="container hidden">
+        <div class="image-container">
+            <img id="mem-img" class="photo-box" src="">
+            <img id="bubu-img" class="bubu-box" src="">
+        </div>
+        <p class="description" id="mem-desc"></p>
+        <button class="btn-dramatic" id="next-btn" onclick="nextMem()">Continue... →</button>
+    </div>
+
+    <div id="screen4" class="container hidden">
+        <img src="Dudu Bubu GIF - Dudu Bubu - Discover & Share GIFs.gif" style="width: 60%; border-radius: 15px;">
+        <h2 style="color: #ff3355; font-size: 1.8rem; margin-top: 15px;">Will you be my Dalenvine? 🌹</h2>
+        <div style="height: 120px; position: relative; margin-top: 20px;">
+            <button class="btn-dramatic" style="background:#27ae60;" onclick="yes()">YES! 💖</button>
+            <button class="btn-dramatic no-btn" id="no-btn" onmouseover="moveNo()">No</button>
+        </div>
+    </div>
+
+    <div id="screen5" class="container hidden">
+        <h1 style="color:var(--accent)">I'm So Happy! ❤️</h1>
+        <p>Send me a little message and your photos!</p>
+        
+        <textarea id="love-message" class="message-input" placeholder="Type something sweet..."></textarea>
+        
+        <button class="btn-dramatic" onclick="sendMessage()">Send Message & Call 🎥</button>
+        
+        <p style="margin-top: 20px; font-size: 0.9rem; color: #888;">I'm waiting to celebrate with you! 🐽</p>
+    </div>
+
+    <script>
+        const memories = [
+            { photo: "IMG_0444.jpeg", bubu: "A.jpeg", text: "Every story has a beginning... ✨" },
+            { photo: "IMG_0461.jpeg", bubu: "B.jpeg", text: "I love irritating you! 😂" },
+            { photo: "IMG_0462.jpeg", bubu: "C.jpeg", text: "I just want to bite you! 🦷" },
+            { photo: "IMG_0514.jpeg", bubu: "D.jpeg", text: "I'll always hold you tight. 🥺" },
+            { photo: "IMG_0541.jpeg", bubu: "dudu bubu love.jpeg", text: "You're my heart and home." },
+            { photo: "IMG_0697.jpeg", bubu: "Dudu Bubu GIF - Dudu Bubu - Discover & Share GIFs.gif", text: "Now for the question..." }
+        ];
+
+        let step = 0;
+
+        function initExperience() {
+            document.getElementById('player').innerHTML = `<iframe width="560" height="315" src="https://www.youtube.com/embed/HTFpTVaHvjw?autoplay=1&loop=1&playlist=HTFpTVaHvjw" allow="autoplay"></iframe>`;
+            document.getElementById('screen1').classList.add('hidden');
+            document.getElementById('screen2').classList.remove('hidden');
+        }
+
+        function checkPass() {
+            if (document.getElementById('pass').value.toUpperCase() === "I LOVE YOU") {
+                document.getElementById('screen2').classList.add('hidden');
+                document.getElementById('screen3').classList.remove('hidden');
+                updateContent();
+            }
+        }
+
+        function updateContent() {
+            document.getElementById('mem-img').src = memories[step].photo;
+            document.getElementById('bubu-img').src = memories[step].bubu;
+            document.getElementById('mem-desc').innerText = memories[step].text;
+            if(step === memories.length - 1) document.getElementById('next-btn').innerText = "Ask Me... ❤️";
+        }
+
+        function nextMem() {
+            step++;
+            if (step < memories.length) { updateContent(); } 
+            else {
+                document.getElementById('screen3').classList.add('hidden');
+                document.getElementById('screen4').classList.remove('hidden');
+            }
+        }
+
+        function moveNo() {
+            const btn = document.getElementById('no-btn');
+            btn.style.left = Math.random() * 60 + '%';
+            btn.style.top = Math.random() * 60 + '%';
+        }
+
+        function yes() {
+            document.getElementById('screen4').classList.add('hidden');
+            document.getElementById('screen5').classList.remove('hidden');
+            confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
+        }
+
+        function sendMessage() {
+            const msg = document.getElementById('love-message').value;
+            // This opens the default mail app with the response. 
+            // You can also change this to a WhatsApp link: https://wa.me/YOURNUMBER?text=
+            window.location.href = `mailto:YOUR_EMAIL_HERE@gmail.com?subject=I Said Yes!&body=${encodeURIComponent(msg)}`;
+            
+            alert("Redirecting to celebrate! Don't forget to send the photos! ❤️");
+        }
+    </script>
+</body>
+</html>
